@@ -20,6 +20,7 @@ pandas
 
 # Data sources (Hugging Face datasets are pulled with `hf download`)
 huggingface_hub
+safetensors>=0.8
 
 # Experiment tracking (optional; auto-disabled if WANDB_API_KEY is absent) + secrets loader
 wandb

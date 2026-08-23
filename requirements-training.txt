@@ -1,0 +1,9 @@
+# Dipendenze del training student. Il runtime REST non deve installarle.
+-r requirements.txt
+
+# Dataset raw-span/parquet e loader Hugging Face usati solo per training/eval.
+datasets>=5.0
+pyarrow>=25
+
+# Monitoraggio memory-safe dei probe MPS.
+psutil>=7

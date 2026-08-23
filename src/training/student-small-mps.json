@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "experiment_family": "mmbert-small-22x384",
+  "backbone": {
+    "repo_id": "jhu-clsp/mmBERT-small",
+    "revision": "abc32620dd4f6ab06f5fbe905dc25f310618e09f",
+    "local_path": "models/mmbert-small-source"
+  },
+  "teacher": {
+    "repo_id": "rizzoaiacademy/rizzo-pii-0.3B",
+    "revision": "a1c3c83827eca22e9675e30c1111c4641caf5901",
+    "config_path": "artifacts/quantization/model/config.json"
+  },
+  "data": {
+    "pilot_train": "artifacts/quantization/data/subsets/train_subset_10k.jsonl",
+    "pilot_validation": "artifacts/quantization/data/validation/validation_real.jsonl",
+    "pilot_is_legacy_proxy": true,
+    "historical_revision": "3a61195c0ab01d1db40f799493e60ce3dc490291",
+    "clean_revision": "50163bcda973efe818004d053cfa159f0927663f",
+    "ai4privacy_revision": "506996d625ed970a0063432daf6007cf4a3a48e3"
+  },
+  "training": {
+    "seed": 20260822,
+    "max_length": 256,
+    "stride": 32,
+    "precision": "bf16",
+    "attention_implementation": "sdpa",
+    "train_batch_size": 1,
+    "eval_batch_size": 1,
+    "gradient_accumulation_steps": 32,
+    "gradient_checkpointing": true,
+    "gradient_checkpointing_use_reentrant": false,
+    "optimizer": "adamw_torch_fused",
+    "learning_rate": 0.00005,
+    "weight_decay": 0.01,
+    "warmup_ratio": 0.05,
+    "epochs": 1.0,
+    "mps_memory_fraction": 0.75,
+    "torch_empty_cache_steps": 1,
+    "max_swap_growth_bytes": 2147483648,
+    "min_available_memory_bytes": 536870912,
+    "cpu_fallback": false,
+    "torch_compile": false
+  }
+}
