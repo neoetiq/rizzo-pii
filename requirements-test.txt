@@ -1,0 +1,10 @@
+# Unit tests use synthetic tensors and temporary datasets; no model download.
+# On Linux CI, install CPU PyTorch first (see .github/workflows/tests.yml).
+torch>=2.11
+numpy>=1.26
+datasets>=5.0
+pyarrow>=25
+safetensors>=0.8
+psutil>=7
+onnx>=1.17
+onnxruntime>=1.20
