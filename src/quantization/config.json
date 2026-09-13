@@ -1,0 +1,127 @@
+{
+  "schema_version": 1,
+  "output_dir": "artifacts/quantization",
+  "model": {
+    "repo_id": "rizzoaiacademy/rizzo-pii-0.3B",
+    "revision_name": "v1.5.0",
+    "revision": "a1c3c83827eca22e9675e30c1111c4641caf5901",
+    "allow_patterns": [
+      "*.json",
+      "*.safetensors",
+      "*.txt",
+      "*.model"
+    ]
+  },
+  "dataset": {
+    "repo_id": "rizzoaiacademy/rizzo-pii-it-dataset",
+    "revision_name": "main",
+    "revision": "3a61195c0ab01d1db40f799493e60ce3dc490291",
+    "validation": {
+      "path": "validation/validation_real.jsonl",
+      "expected_rows": 7000
+    },
+    "calibration": {
+      "path": "subsets/train_subset_10k.jsonl",
+      "expected_rows": 10000
+    }
+  },
+  "validation": {
+    "required_fields": ["tokens", "bio_labels"],
+    "require_nonempty_tokens": true
+  },
+  "runtime": {
+    "batch_size": 16,
+    "max_length": 768,
+    "threads": 1,
+    "validation_shapes": [[1, 8], [2, 128], [1, 768]],
+    "int4_block_size": 128
+  },
+  "gates": {
+    "onnx-fp32": {
+      "max_micro_f1_drop": 0.00001,
+      "max_macro_f1_drop": 0.00001,
+      "min_entity_agreement": 0.9999,
+      "max_new_spans": 0,
+      "max_removed_spans": 0
+    },
+    "onnx-int8": {
+      "max_micro_f1_drop": 0.002,
+      "max_macro_f1_drop": 0.003,
+      "max_per_tag_recall_drop": {
+        "CF": 0.005,
+        "PIVA": 0.005,
+        "IBAN": 0.005,
+        "DOCID": 0.005,
+        "ID_DOC": 0.005,
+        "EMAIL": 0.005,
+        "TELEPHONENUM": 0.005
+      }
+    },
+    "onnx-int8-weight": {
+      "max_micro_f1_drop": 0.002,
+      "max_macro_f1_drop": 0.003,
+      "max_per_tag_recall_drop": {
+        "CF": 0.005,
+        "PIVA": 0.005,
+        "IBAN": 0.005,
+        "DOCID": 0.005,
+        "ID_DOC": 0.005,
+        "EMAIL": 0.005,
+        "TELEPHONENUM": 0.005
+      }
+    },
+    "onnx-int8-full": {
+      "max_micro_f1_drop": 0.002,
+      "max_macro_f1_drop": 0.003,
+      "max_per_tag_recall_drop": {
+        "CF": 0.005,
+        "PIVA": 0.005,
+        "IBAN": 0.005,
+        "DOCID": 0.005,
+        "ID_DOC": 0.005,
+        "EMAIL": 0.005,
+        "TELEPHONENUM": 0.005
+      }
+    },
+    "onnx-int2": {
+      "release_enabled": false,
+      "max_micro_f1_drop": 0.01,
+      "max_macro_f1_drop": 0.02,
+      "max_per_tag_recall_drop": {
+        "CF": 0.02,
+        "PIVA": 0.02,
+        "IBAN": 0.02,
+        "DOCID": 0.02,
+        "ID_DOC": 0.02,
+        "EMAIL": 0.02,
+        "TELEPHONENUM": 0.02
+      }
+    },
+    "onnx-int4-a32": {
+      "max_micro_f1_drop": 0.002,
+      "max_macro_f1_drop": 0.003,
+      "max_per_tag_recall_drop": {
+        "CF": 0.005,
+        "PIVA": 0.005,
+        "IBAN": 0.005,
+        "DOCID": 0.005,
+        "ID_DOC": 0.005,
+        "EMAIL": 0.005,
+        "TELEPHONENUM": 0.005
+      }
+    },
+    "onnx-int4": {
+      "max_micro_f1_drop": 0.002,
+      "max_macro_f1_drop": 0.003,
+      "max_per_tag_recall_drop": {
+        "CF": 0.005,
+        "PIVA": 0.005,
+        "IBAN": 0.005,
+        "DOCID": 0.005,
+        "ID_DOC": 0.005,
+        "EMAIL": 0.005,
+        "TELEPHONENUM": 0.005
+      }
+    }
+  }
+}
