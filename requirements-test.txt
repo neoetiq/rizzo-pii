@@ -7,4 +7,5 @@ pyarrow>=25
 safetensors>=0.8
 psutil>=7
 onnx>=1.17
+onnx-ir>=0.1.12
 onnxruntime>=1.20
